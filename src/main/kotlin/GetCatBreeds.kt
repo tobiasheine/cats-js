@@ -10,11 +10,7 @@ import kotlinx.serialization.list
 @UnstableDefault
 class GetCatBreeds {
 
-    private val httpClient = HttpClient(Js) {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(Json.nonstrict)
-        }
-    }
+    private val httpClient = HttpClient(Js)
 
     suspend operator fun invoke(): List<CatBreed> {
         val jsonString = httpClient.get<String>(URL)
