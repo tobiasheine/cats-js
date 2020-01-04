@@ -7,6 +7,12 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
+    maven {
+        url "https://dl.bintray.com/kotlin/kotlin-eap"
+    }
+    maven {
+        url "https://dl.bintray.com/kotlin/kotlin-js-wrappers"
+    }
     mavenCentral()
     jcenter()
 }
@@ -19,11 +25,22 @@ dependencies {
     implementation "io.ktor:ktor-client-json-js:1.2.6"
     implementation("io.ktor:ktor-client-serialization-js:1.2.6")
     testImplementation "org.jetbrains.kotlin:kotlin-test-js"
-
 }
 
 kotlin {
     target {
+        useCommonJs()
         browser {}
+        nodejs {}
+    }
+
+    sourceSets {
+        main {
+            dependencies {
+                implementation(npm("@jetbrains/kotlin-react", "16.9.0-pre.83"))
+                implementation(npm("@jetbrains/kotlin-react-dom", "16.9.0-pre.83"))
+                api(npm("text-encoding","0.7.0"))
+            }
+        }
     }
 }

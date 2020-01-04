@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 
 @UnstableDefault
-class GetBreeds {
+class GetCatBreeds {
 
     private val httpClient = HttpClient(Js) {
         install(JsonFeature) {
