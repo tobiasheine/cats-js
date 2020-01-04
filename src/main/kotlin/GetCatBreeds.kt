@@ -7,7 +7,6 @@ import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 
-@UnstableDefault
 class GetCatBreeds {
 
     private val httpClient = HttpClient(Js)
@@ -18,7 +17,7 @@ class GetCatBreeds {
     }
 
     private companion object {
-        const val URL = "https://api.thecatapi.com/v1/breeds?api_key=c85ccabd-68a5-4333-bc95-8133b8b7a9c4"
+        const val URL = "https://api.thecatapi.com/v1/breeds"
     }
 
 }
