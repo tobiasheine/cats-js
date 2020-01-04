@@ -16,8 +16,9 @@ class GetCatBreeds {
         }
     }
 
-    suspend operator fun invoke(): List<Breed> {
-        return Json.nonstrict.parse(Breed.serializer().list, httpClient.get(URL))
+    suspend operator fun invoke(): List<CatBreed> {
+        val jsonString = httpClient.get<String>(URL)
+        return Json.nonstrict.parse(CatBreed.serializer().list, jsonString)
     }
 
     private companion object {
