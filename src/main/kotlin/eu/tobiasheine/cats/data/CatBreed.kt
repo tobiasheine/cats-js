@@ -1,3 +1,5 @@
+package eu.tobiasheine.cats.data
+
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -1,21 +1,14 @@
+package eu.tobiasheine.cats.frontend
+
+import eu.tobiasheine.cats.data.CatBreed
+import eu.tobiasheine.cats.data.CatBreedsModelViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import react.*
 import react.dom.*
-import kotlin.browser.document
 import kotlin.coroutines.CoroutineContext
 
-fun main() {
-    render(document.getElementById("app")) {
-        app()
-    }
-}
-
-interface AppState : RState {
-    var breeds: List<CatBreed>?
-}
-
-private class App : RComponent<RProps, AppState>(), CoroutineScope {
+class CatApp : RComponent<RProps, AppState>(), CoroutineScope {
     private val viewModel = CatBreedsModelViewModel()
     private var job = Job()
     override val coroutineContext: CoroutineContext
@@ -51,5 +44,9 @@ private class App : RComponent<RProps, AppState>(), CoroutineScope {
     }
 }
 
-fun RBuilder.app() = child(App::class) {
+interface AppState : RState {
+    var breeds: List<CatBreed>?
+}
+
+fun RBuilder.catApp() = child(CatApp::class) {
 }

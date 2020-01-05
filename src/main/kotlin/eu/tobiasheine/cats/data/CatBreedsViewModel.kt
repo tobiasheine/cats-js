@@ -1,3 +1,5 @@
+package eu.tobiasheine.cats.data
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
