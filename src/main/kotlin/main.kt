@@ -53,4 +53,3 @@ private class App : RComponent<RProps, AppState>(), CoroutineScope {
 
 fun RBuilder.app() = child(App::class) {
 }
-

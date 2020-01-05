@@ -17,9 +17,6 @@ class CatBreedsModelViewModel : CoroutineScope {
                 .also {
                     listener(it)
                 }
-
         }
     }
-
-
 }
