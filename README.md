@@ -1,5 +1,5 @@
 # Cats-JS
-A react sample web app that talks to [the cat api](https://thecatapi.com/) and prints a list of cat breeds in the browser. 
+A sample react web app that talks to [the cat api](https://thecatapi.com/) and prints a list of cat breeds in the browser. 
 
 # Tools
 - [kotlin.js](https://kotlinlang.org/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html)
