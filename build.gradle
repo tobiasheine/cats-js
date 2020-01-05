@@ -17,17 +17,6 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
-    implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.6.12")
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.14.0"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.2'
-    implementation "io.ktor:ktor-client-js:1.2.6"
-    implementation "io.ktor:ktor-client-json-js:1.2.6"
-    implementation("io.ktor:ktor-client-serialization-js:1.2.6")
-    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
-}
-
 kotlin {
     target {
         browser {}
@@ -37,6 +26,23 @@ kotlin {
     sourceSets {
         main {
             dependencies {
+                implementation kotlin('stdlib-js')
+                implementation kotlin('test-js')
+
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.14.0"
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.2'
+                implementation "io.ktor:ktor-client-js:1.2.6"
+                implementation "io.ktor:ktor-client-json-js:1.2.6"
+                implementation("io.ktor:ktor-client-serialization-js:1.2.6")
+
+                implementation(npm("core-js", "^2.0.0"))
+                implementation(npm("@jetbrains/kotlin-react", "16.9.0-pre.83"))
+                implementation(npm("@jetbrains/kotlin-react-dom", "16.9.0-pre.83"))
+                implementation(npm("@jetbrains/kotlin-extensions", "1.0.1-pre.67"))
+
+                implementation(npm("react", "16.8.3"))
+                implementation(npm("react-dom", "16.8.3"))
+                implementation(npm("kotlinx-html", "0.6.12"))
                 api(npm("text-encoding","0.7.0"))
             }
         }

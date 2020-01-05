@@ -1,34 +1,59 @@
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.html.dom.append
-import kotlinx.html.h1
-import kotlinx.html.label
-import kotlinx.html.li
-import kotlinx.html.ul
+import react.*
+import react.dom.*
 import kotlin.browser.document
+import kotlin.coroutines.CoroutineContext
 
 fun main() {
-    val getCatBreeds = GetCatBreeds()
-
-    GlobalScope.launch {
-        val breeds = getCatBreeds()
-        render(breeds)
+    render(document.getElementById("app")) {
+        app()
     }
 }
 
-private fun render(breeds: List<CatBreed>) {
-    document.getElementById("app")
-        ?.also { it.innerHTML = "" }
-        ?.append {
-            h1 { +"Cat Breeds" }
-            ul {
-                breeds.forEach {
-                    li {
-                        label {
-                            text(it.name)
+interface AppState : RState {
+    var breeds: List<CatBreed>?
+}
+
+private class App : RComponent<RProps, AppState>(), CoroutineScope {
+    private val getCatBreeds = GetCatBreeds()
+    private var job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job
+
+    override fun componentDidMount() {
+        launch {
+            getCatBreeds()
+                .also {
+                    setState {
+                        this.breeds = it
+                    }
+                }
+
+        }
+    }
+
+    override fun RBuilder.render() {
+        div {
+            h3 {
+                label {
+                    +"Cat Breeds:"
+                }
+                ul {
+                    state.breeds?.forEach { item ->
+                        li {
+                            label {
+                                +item.name
+                            }
                         }
                     }
                 }
             }
         }
+    }
 }
+
+fun RBuilder.app() = child(App::class) {
+}
+
