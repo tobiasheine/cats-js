@@ -21,4 +21,8 @@ class CatBreedsModelViewModel : CoroutineScope {
                 }
         }
     }
+
+    fun clear() {
+        job.cancel()
+    }
 }

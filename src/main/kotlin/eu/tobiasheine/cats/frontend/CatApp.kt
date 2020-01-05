@@ -24,6 +24,10 @@ class CatApp : RComponent<RProps, AppState>(), CoroutineScope {
         viewModel.loadCatBreeds()
     }
 
+    override fun componentWillUnmount() {
+        viewModel.clear()
+    }
+
     override fun RBuilder.render() {
         div {
             h3 {
