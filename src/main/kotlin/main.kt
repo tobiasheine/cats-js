@@ -1,6 +1,5 @@
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import react.*
 import react.dom.*
 import kotlin.browser.document
@@ -17,21 +16,19 @@ interface AppState : RState {
 }
 
 private class App : RComponent<RProps, AppState>(), CoroutineScope {
-    private val getCatBreeds = GetCatBreeds()
+    private val viewModel = CatBreedsModelViewModel()
     private var job = Job()
     override val coroutineContext: CoroutineContext
         get() = job
 
     override fun componentDidMount() {
-        launch {
-            getCatBreeds()
-                .also {
-                    setState {
-                        this.breeds = it
-                    }
-                }
-
+        viewModel.listener = {
+            setState {
+                this.breeds = it
+            }
         }
+
+        viewModel.loadCatBreeds()
     }
 
     override fun RBuilder.render() {
